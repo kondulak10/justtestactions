@@ -1,0 +1,11 @@
+{
+    "files.exclude": {
+        "**/*.css": {
+            "when": "$(basename).scss"
+        },
+        "**/*.css.map": {
+            "when": "$(basename)"
+        }
+    },
+    "editor.gotoLocation.multiple": "goto"
+}

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar snapshots 1`] = `
+<nav
+  className="NavBar__StNavBar-qlt09m-0 fbmlKN"
+>
+  <div
+    className="NavBar__StHeader-qlt09m-1 cEJAzB"
+  >
+    <a
+      href="/neqsim"
+      onClick={[Function]}
+    >
+      <svg
+        fill="none"
+        height={24}
+        viewBox="0 0 24 24"
+        width={24}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          clipRule="evenodd"
+          d="M3 8V6H21V8H3ZM3 13H21V11H3V13ZM3 18H21V16H3V18Z"
+          fill="#007079"
+          fillRule="evenodd"
+        />
+      </svg>
+    </a>
+    <span>
+      <a
+        href="/neqsim"
+        onClick={[Function]}
+      >
+        Neqsim
+      </a>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "height": "24px",
+        "marginRight": "50px",
+      }
+    }
+  >
+    testName
+  </div>
+</nav>
+`;

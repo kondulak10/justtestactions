@@ -1,0 +1,104 @@
+apiVersion: radix.equinor.com/v1
+kind: RadixApplication
+metadata:
+  name: neqsim
+spec:
+  environments:
+    - name: dev
+      build:
+        from: master
+    - name: prod
+      build:
+        from: release
+  components:
+    - name: web
+      src: ./web
+      ports:
+        - name: http
+          port: 80
+      public: false
+      environmentConfig:
+        - environment: dev
+          monitoring: false
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
+            limits:
+              memory: "54Mi"
+              cpu: "20m"
+          replicas: 1
+        - environment: prod
+          monitoring: false
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "10m"
+            limits:
+              memory: "54Mi"
+              cpu: "20m"
+          replicas: 1
+    - name: api
+      src: ./api
+      ports:
+        - name: http
+          port: 8080
+      secrets:
+        - DB_URL
+        - DB_USERNAME
+        - DB_PASSWORD
+      environmentConfig:
+        - environment: dev
+          monitoring: false
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
+          replicas: 1
+        - environment: prod
+          monitoring: false
+          resources:
+            requests:
+              memory: "1024Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
+          replicas: 1
+    - name: oauth-proxy
+      src: ./oauth-proxy
+      ports:
+        - name: http
+          port: 8081
+      public: true
+      environmentConfig:
+        - environment: dev
+          monitoring: false
+          resources:
+            requests:
+              memory: "42Mi"
+              cpu: "10m"
+            limits:
+              memory: "50Mi"
+              cpu: "20m"
+          replicas: 1
+        - environment: prod
+          monitoring: false
+          resources:
+            requests:
+              memory: "42Mi"
+              cpu: "10m"
+            limits:
+              memory: "50Mi"
+              cpu: "20m"
+          replicas: 1
+      secrets:
+        - OAUTH2_PROXY_CLIENT_ID
+        - OAUTH2_PROXY_CLIENT_SECRET
+        - OAUTH2_REDIRECT_URL
+  dnsAppAlias:
+    environment: prod
+    component: oauth-proxy

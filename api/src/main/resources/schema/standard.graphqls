@@ -1,0 +1,13 @@
+type Standard {
+    id: ID!
+    combustionTemperature: Float!
+    measurementTemperature: Float!
+    idealGasReferenceState: Boolean!
+    createdDate: String
+}
+
+input StandardInput {
+    combustionTemperature: Float!
+    measurementTemperature: Float!
+    idealGasReferenceState: Boolean!
+}
